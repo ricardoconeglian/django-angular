@@ -1,4 +1,4 @@
 venv
 db.sqlite3
 merbers_profile
-__pycache__
+__pycache__git push -u origin main
