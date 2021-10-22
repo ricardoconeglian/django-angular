@@ -8,7 +8,7 @@ class Member(models.Model):
     phone = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='members_profile')
+    photo = models.ImageField( blank=True, null=True) #upload_to='media'
 
     def __str__(self):
         return self.name + ' ' + self.surname

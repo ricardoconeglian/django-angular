@@ -1,5 +1,6 @@
 import { ApiService } from './api.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,14 @@ export class AppComponent {
   title = 'members-front';
 
   members = [
-    {name:'member01', id: 1, surname: 'Ciclano', photo: 'http://#1'},
-    {name:'member02', id: 2, surname: 'Beltrano', photo: 'http://#2'},
-    {name:'member03', id: 3, surname: 'Fulano', photo: 'http://#3'},
+    {name:'member01', id: 1, surname: 'Ciclano', photo: 'http://#1', phone: ''},
+    {name:'member02', id: 2, surname: 'Beltrano', photo: 'http://#2', phone: ''},
+    {name:'member03', id: 3, surname: 'Fulano', photo: 'http://#3', phone: ''},
   ];
 
-  selected_member = {name: '', surname: '',};
+  selected_member = {name: '', surname: '', phone: ''};
 
-  constructor(private api:ApiService){
+  constructor(private api:ApiService, private router:Router) {
     this.getMembers();
   }
 
@@ -33,15 +34,7 @@ export class AppComponent {
   }
 
   memberClicked = (member:any) => {
-    this.api.getMember(member.id).subscribe(
-      data => {
-        console.log(data);
-        this.selected_member = data;
-      },
-      error => {
-        console.log("Aconteceu um erro", error);
-      }
-    )
+    this.router.navigate(['member-detail', member.id])
   }
 
 
