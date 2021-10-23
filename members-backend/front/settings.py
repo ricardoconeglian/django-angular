@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'front.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycop2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangodb',
         'USER': 'django',
         'PASSWORD': 'django',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '', #5432
     },
 
     'local': {
