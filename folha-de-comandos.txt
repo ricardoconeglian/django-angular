@@ -1,0 +1,27 @@
+[uwsgi]
+chdir           = /home/ricardoconeglian/django-angular/members-backend
+module          = front.wsgi
+home            = /home/ricardoconeglian/venv
+master          = true
+processes       = 10
+socket          = /home/ricardoconeglian/django-angular/members-backend/mysite.sock
+vacuum          = true
+chmod-socket    = 666
+
+
+[Unit]
+Description=Django VPS uWSGI Emperor
+After=syslog.target
+
+[Service]
+ExecStart=/home/ricardoconeglian/venv/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+RuntimeDirectory=uwsgi
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+User=ricardoconeglian
+
+[Install]
+WantedBy=multi-user.target
